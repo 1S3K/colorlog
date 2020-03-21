@@ -1,0 +1,333 @@
+{% load staticfiles %}
+<!-- 수정해야할 부분 -->
+<!DOCTYPE html>
+<html>
+<title>COLOR LOG</title>
+
+<head>
+	<!-- {% if user.request.session %}
+		user = User.objects.get(username = user.request.session)
+	{% endif %} -->
+	
+  	<script src="/static/js/jquery-1.9.1.min.js"></script>
+	<script src="/static/js/source.js"> </script>
+    <script src="/static/js/window_source.js"> </script>
+	<script src="/static/js/jqeury-ui.js"> </script>
+	<script src="/static/js/jquery-bpopup-min.js"></script>
+	<script src="/static/js/masonry.pkgd.js"></script>
+    <script src="/static/js/lightslider.js"></script> 
+    <script src="/static/js/datepicker.js"></script> 
+	<script>    
+		var region_code = "code";
+		var region_name = "name";
+		
+		
+		$(function(){
+				$("#dialog").dialog();
+		});
+		
+	</script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/style2.css" type="text/css">
+   
+    <!-- <link rel="stylesheet" href="{% static 'css/font_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/w3_style.css' %}"> -->
+	
+  <style>
+	*{
+		  box-sizing:content-box;
+	}
+  </style>
+
+</head>
+
+
+<body class="w3-content w3-black">
+    <div id="info-box"></div>
+    <header id="header">
+				<h1><a class="main_logo" href="http://coloringmaps.run.goorm.io/"><img class ="logo_image" src="/static/img/logo_text.png"></a></h1>
+				<nav id="nav">
+					<ul>
+			
+						<li><a href="#" class="my_page">MY PAGE</a></li>
+						<li><a href="http://coloringmaps.run.goorm.io/logout">LOGOUT</a></li>
+						
+					
+
+
+                    </ul>
+				</nav>
+			
+    </header>
+    
+
+<div id="main_con" class="detail_html" style="position: fixed; background-color:#F7F7F7;">
+	
+	<!-- 게시글 보는 부분-->
+		<div>
+
+		<div class = "story-box">
+
+
+				<div class="view_photo">
+					<img class="view_img" src="{{ story.image.url }} ">
+				</div>
+				
+				<div class="story_sidebar show_story">
+						<div class = "title_part">
+
+							<h1 class="VIEW_STORY_TITLE" style="color: white;"> {{ story.get_region_display }} | {{ story.spot }}</h1>
+						</div>
+						<div class = "text_part">
+
+							<p class="text_in_VIEW_STORY" style="font-size: 20px;"> 
+								&nbsp&nbsp {{ story.text }}
+								</p>
+						</div>
+						<div class = "respond_part">
+								&nbsp&nbsp 여행 시작 날짜 : {{ story.begin_date }}</br></br>
+								&nbsp&nbsp 여행 종료 날짜 : {{ story.end_date }}
+							<a href="http://coloringmaps.run.goorm.io/"><input type="button" class="comment_upload_button" value="돌아가기"></a>
+							<a href="http://coloringmaps.run.goorm.io/region/story/{{story.id}}/delete"><input type="button" class="comment_upload_button" value="삭제하기" onclick="if(!confirm('삭제 하시겠습니까?')){return false;}"></a>
+							<a href="http://coloringmaps.run.goorm.io/region/story/{{story.id}}/modify"><input type="button" class="comment_upload_button" value="수정하기"></a>
+						</div>
+
+						<!-- <div class="comment_part">
+							여기에 댓글
+						</div> -->
+
+						<!-- <div class="comment_enter_part">
+								<textarea id="comment_holder" placeholder="댓글을 달아주세요"></textarea>
+								<input type="button" class="comment_upload_button">
+						</div> -->
+				</div>
+			</div>
+
+		</div>
+    
+		
+</div>
+			
+
+
+		
+    
+	
+		<div id="mypage_window">
+				<div id="container">
+						<ul class="tabs">
+			
+							<li class="active" rel="tab1">회원 정보</li>
+							<li rel="tab2">이메일 변경</li>
+							<li rel="tab3">닉네임 변경</li>
+						</ul>
+						<div class="tab_container">
+							<div id="tab1" class="tab_content">
+
+								
+									
+									</br>
+									
+										<p class="mypage_description"> 사용자 ID </p> 
+
+										<p style="color:#636e72" class="mypage_description"> {{ user.username }} </p> 
+										
+										<p class="mypage_description"> EMAIL </p>
+
+										<p style="color:#636e72" class="mypage_description"> {{ user.email }} </p> 
+
+										<p class="mypage_description"> 닉네임 </p>
+
+										<p style="color:#636e72" class="mypage_description"> {{ user.profile.nickname }} </p>
+
+									<form method="POST" action={%url 'withdrawal'%}>
+										{% csrf_token %}
+										<input type="submit"  class="mypage_button" onclick="if(!confirm('정말 탈퇴 하시겠습니까?')){return false;}" value="탈퇴하기"></input>
+									</form>
+										
+							</div>
+							<!-- #tab1 -->
+							<div id="tab2" class="tab_content">
+
+									<form method="POST" action="{%url 'modifyemail'%}">
+										{%csrf_token%}
+										</br>
+                                
+                                {% if email_empty %}
+											<p> <input name="email1" class="mypage_input" type="text" placeholder="E-Mail"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 이메일를 입력해주세요</p>
+											<p> <input name="email2" class="mypage_input" type="text" placeholder="NEW E-Mail"></p>
+											<p class="mypage_description"> 변경할 이메일을 입력해주세요</p>
+                                <script>
+                                    alert('이메일 입력을 다시 한번 확인해주세요')
+                                </script>	
+                                
+                                {% elif email_incorrect %}
+											<p> <input name="email1" class="mypage_input" type="text" placeholder="E-Mail"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 이메일를 입력해주세요</p>
+											<p> <input name="email2" class="mypage_input" type="text" placeholder="NEW E-Mail"></p>
+											<p class="mypage_description"> 변경할 이메일을 입력해주세요</p>
+                                <script>
+                                    alert('기존에 사용한 이메일과 동일하지 않습니다')
+                                </script>
+                                
+                                {% else %}
+											<p> <input name="email1" class="mypage_input" type="text" placeholder="E-Mail"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 이메일를 입력해주세요</p>
+											<p> <input name="email2" class="mypage_input" type="text" placeholder="NEW E-Mail"></p>
+											<p class="mypage_description"> 변경할 이메일을 입력해주세요</p>
+                              
+	                            {% endif %}
+											<input type="submit"  class="mypage_button" onclick=" " value="변경하기"></input>
+									</form>
+							</div>
+							<!-- #tab2 -->
+							<div id="tab3" class="tab_content">
+
+									<form method="POST" action="{%url 'modifynickname'%}">
+											{%csrf_token%}
+										</br>
+                                {% if nickname_empty %}
+											<p> <input name="nick1" class="mypage_input" type="text" placeholder="NAME"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 닉네임을 입력해주세요</p>
+											<p> <input name="nick2" class="mypage_input" type="text" placeholder="NEW NAME"></p>
+											<p class="mypage_description"> 변경할 닉네임을 입력해주세요</p>
+                                
+                                <script>
+                                    alert('닉네임 입력을 다시 한번 확인해주세요')
+                                </script>
+                                
+                                {% elif nickname_incorrect %}
+											<p> <input name="nick1" class="mypage_input" type="text" placeholder="NAME"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 닉네임을 입력해주세요</p>
+											<p> <input name="nick2" class="mypage_input" type="text" placeholder="NEW NAME"></p>
+											<p class="mypage_description"> 변경할 닉네임을 입력해주세요</p>                                
+								<script>
+                                    alert('기존에 사용한 닉네임과 동일하지 않습니다')
+                                </script>	
+                                
+                                {% else %}
+											<p> <input name="nick1" class="mypage_input" type="text" placeholder="NAME"> </p>
+											<p class="mypage_description"> 현재 사용 하고 있는 닉네임을 입력해주세요</p>
+											<p> <input name="nick2" class="mypage_input" type="text" placeholder="NEW NAME"></p>
+											<p class="mypage_description"> 변경할 닉네임을 입력해주세요</p>   
+                                
+                                {% endif %}
+											<input type="submit"  class="mypage_button" onclick=" " value="변경하기"></input>
+									</form>
+							</div>
+					
+						</div>
+	
+					</div>
+
+
+
+
+
+			<!--
+				<div class="demo">
+					<div class="item">            
+							<div class="clearfix" style="max-width:474px;">
+									<ul id="image-gallery" class="gallery list-unstyled cS-hidden">
+											<li data-thumb="img/thumb/cS-1.jpg"> 
+													<img src="img/cS-1.jpg" />
+													 </li>
+											<li data-thumb="img/thumb/cS-2.jpg"> 
+													<img src="img/cS-2.jpg" />
+													 </li>
+											<li data-thumb="img/thumb/cS-3.jpg"> 
+													<img src="img/cS-3.jpg" />
+													 </li>
+											<li data-thumb="img/thumb/cS-4.jpg"> 
+													<img src="img/cS-4.jpg" />
+													 </li>
+	
+									</ul>
+							</div>
+					</div>
+					-->
+					<!-- 이미지 슬라이더 사용법 -->
+	
+	
+			</div>	
+
+</div>
+</body>
+
+<script>    
+
+
+
+		$(document).ready(function() {
+							 $("#content-slider").lightSlider({
+									 loop:true,
+									 keyPress:true
+									 
+							 });
+							 $('#image-gallery').lightSlider({
+									 gallery:true,
+									 item:1,
+
+									 slideMargin: 0,
+									 speed:500,
+									 auto:true,
+									 loop:true,
+									 onSliderLoad: function() {
+											 $('#image-gallery').removeClass('cS-hidden');
+									 }  
+							 });
+					 });
+					 // 슬라이드쇼 세팅값
+
+
+
+				$(function(){
+						$("#dialog").dialog();
+				});
+
+
+
+
+				
+				$(document).ready(function(){
+
+				var random_number = 0;
+
+				var color_array = ['#f7ecc9','#ffd8d0','#ffbcbc','#9de9d3','#93eedc','#a5d0fc','#87b1d1','#d8d5fd','#9e96dd','#fab1ce','#00dffc','#cbe86b'];
+
+				var color_interal = setInterval(function(){
+
+				random_number = Math.floor(Math.random()*12);
+
+				$(".right_side").animate({
+					
+					background: color_array[random_number]
+
+
+				},2000,'linear')
+				},3000);
+				});
+
+
+
+
+  
+
+
+
+
+
+</script>
+
+
+</html>

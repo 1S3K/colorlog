@@ -1,0 +1,148 @@
+<script>
+								
+								
+								if (!region_code) {
+										document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+								else (region_code="0316") {
+									document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('{% if story.region == "0316" %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										// document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endif %}');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+								else if (region_code="0433") {
+									document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('{% if story.region == "0433" %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endif %}');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+								else {
+									document.write('{% if stories %}');
+									document.write('{% for story in stories %}');
+									
+									document.write('<div id ="color_1" class="grid-item">');
+									document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+									document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+									document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+									document.write('</div>');
+									document.write('{% endfor %}');
+									document.write('{% endif %}');
+								}
+										
+					 		
+							// <div id ="color_1" class="grid-item">
+							// 	<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">
+							// 	<h4 class="grid_title"> {{story.spot}} </h4>
+							// 	<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>
+							// </div>
+	
+	
+
+$(document).on("click", "path", function(e) {
+  $('#city_selector').html($(this).data('info'));
+
+  if(path_clicked_count==0){
+    $('path').not('path.island').attr('fill',"#B9B9B9");
+    $(this).attr('fill','#c7bf4b');
+
+	  region_code = $(this).attr('region-id');
+	  document.getElementById('reg_code').value = region_code;
+	  	  // alert(region_code);
+if (region_code="0433") {
+									document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('{% if story.region == "0433" %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endif %}');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+
+    path_clicked_count=1;
+
+  }
+
+  else if(path_clicked_count==1){
+    $('path').not('path.island').attr('fill',"#B9B9B9");
+    $(this).attr('fill','#c7bf4b');
+
+	  document.getElementById('reg_code').value = region_code;
+region_code = $(this).attr('region-id');
+	   // alert(region_code);
+if (region_code="0433") {
+									document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('{% if story.region == "0433" %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endif %}');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+ 
+
+  }
+});
+	
+$(function (){
+		$('ul.region_list li button').click(function(){
+			$('#region_window').bPopup().close();
+        	region_name = $(this).attr('data');
+        	region_code =$(this).attr('id');
+         
+        	$("#place_title_mini").attr('value',region_name);
+        	$('#city_selector').html(region_name);
+        	$('path').not('path.island').attr('fill',"#B9B9B9"); // 전체 회색으로 칠하고 
+        	$('path[region-id='+region_code+']').attr('fill','#c7bf4b');
+		
+			document.getElementById('reg_code').value = region_code;
+    	  // alert(region_code);
+	
+			if (region_code="0433") {
+									document.write('{% if stories %}');
+										document.write('{% for story in stories %}');
+										document.write('{% if story.region == "0433" %}');
+										document.write('<div id ="color_1" class="grid-item">');
+										document.write('<img class = "grid_size" src="{{story.image.url}}" alt="/static/img/logo.png">');
+										document.write('<h4 class="grid_title"> {{story.spot}} </h4>');
+										document.write('<a href="story/{{story.pk}}"><button class="view_button btn1"> 게시물 보기 </button></a>');
+										document.write('</div>');
+										document.write('{% endif %}');
+										document.write('{% endfor %}');
+										document.write('{% endif %}');
+								}
+
+		
+	})
+});
+	
+							</script>

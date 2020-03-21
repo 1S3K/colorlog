@@ -1,0 +1,53 @@
+명령어 모음
+
+1. 장고 뼈대 만들기
+django-admin startproject coloringpas    // coloringpas라는 프로젝트 생성 but 구름에서는 이미 만들어줌
+
+python manage.py startapp applications   // 'applications'라는 애플리케이션 생성
+
+notepad setting.py                       // 설정 파일을 확인 및 수정
+"""
+notepad 지원 안되니까 그냥 직접들어가서 4가지 항목 확인
+
+1. ALLOWED_HOSTS
+DEBUG=True -> 개발모드
+DEBUG=False -> 운영모드
+운영모드인 경우 ALLOWED_HOSTS에 반드시 서버의 IP나 도메인을 지정해야하고 
+개발모드인 경우 값을 지정하지 않아도 localhost 혹은 127.0.0.1로 간주
+
+지금 개발 모드이고 장고의 runserver를 가동할 서버의 IP가 127.0.0.1뿐만 아니라 192.168.56.101일 수도 있다면
+ALLOWED_HOSTS = ['192.168.56.101', 'localhost', '127.0.0.1'] 과 같이 지정
+
+2. 프로젝트에 포함되는 애플리케이션들은 모두 설정 파일에 등록되어야 함
+applications 앱의 설정 클래스는 startapp applications 명령(2번째 명령) 시에
+자동 생성된 apps.py파일에 ApplicationsConfig라고 정의됨
+그래서 장고가 설정클래스를 찾을 수 있도록 모듈 경로까지 포함하여
+INSTALLED_APPS에 'applications.apps.ApplicationsConfig' 를 추가해줌.
+
+3. 프로젝트에 사용할 DB엔진
+장고는 디폴트로 SQLite3 DB엔진을 사용하도록 설정
+만약 Mysql 같은 다른DB로 변경하고 싶다면 settings.py파일에서 수정해주면 됨(DATABASES = {} 부분)
+
+
+4. 타임존 지정
+최초 설정시 세계표준시(UTC)로 되어있는데 한국 시간으로 변경
+TIME_ZONE = 'Asia/Seoul'
+
++ USE_TZ=TRUE : 장고가 알아서 시간대 조정
+"""
+
+python manage.py migrate                 // DB에 기본 테이블을 생성
+"""
+당장 테이블이 없더라도 장고는 모든 웹 프로젝트 개발 시 반드시 사용자와 그룹 테이블이 필요하다는 가정 하에 설계됐기 때문에 migrate명령 필요
+"""
+
+python manage.py runserver 0.0.0.0:8000               // 현재까지 작업을 개발용 웹 서버로 확인함
+"""
+python manage.py runserver : IP주소와 포트번호를 지정하지 않으면 디폴트로 127.0.0.1, 8000번 사용
+python manage.py runserver 8888 : 127.0.0.1, 8888번 포트 사용
+python manage.py runserver 0.0.0.0:8000 & : &를 명령 끝에 추가하면, 웹 서버 프로그램이 백그라운드에서 실행(리눅스와 맥에서만 가능)
+"""
+
+5. 모델
+python manage.py makemigrations maps
+python manage.py migrate maps

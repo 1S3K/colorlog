@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<title>COLOR LOG</title>
+<head>
+
+  <script src="js/jquery-1.9.1.min.js"></script> 
+  <script src="js/fullpage.js"></script>
+  <script src = "js/jquery.color-2.1.2.min.js"></script>
+  
+
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic&display=swap" rel="stylesheet"> 
+  <link rel="stylesheet" href="css/w3_style.css" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="css/style2.css" type="text/css">
+  <link rel="stylesheet" href="css/fullpage.css" type="text/css">
+  
+
+  <style>
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+
+
+
+    <div id="fullpage">
+        <div class="section" style= "width: 100vw; height:100vh;">
+      
+            <div class="page-wrapper">
+                <h1 class="title" style="color:white" >COLOR LOG</h1>
+                <a class="btn trigger" href="#">LOGIN</a>
+                <a class="btn_2 trigger_2" href="#">SIGN UP</a>
+            </div>
+
+            <div class="modal-wrapper">
+                    <div class="modal">
+                    <div class="head">
+                        <a class="btn-close trigger" href="#">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+                    </div>
+
+
+
+                    <div class="content">
+
+                        <h2 class="login_title">LOGIN</h2>
+                        <p>로그인 ~~~</p>
+                        <p> <input class="w3-input w3-border" type="text" placeholder="ID"> </p>
+                        <p> <input class="w3-input w3-border" type="password" placeholder="Password"></p>
+                        <button type="button"  class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="location.href='main.html' ">LOGIN</button>
+                    </div>
+                    </div>
+            </div>
+
+
+
+            <div class="modal-wrapper_2">
+                    <div class="modal_2">
+                        <div class="head">
+                            <a class="btn-close trigger_2" href="#">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+                        </div>
+        
+        
+        
+                        <div class="content">
+        
+
+                                        
+                                        <h2 class="modal_title">SIGN-UP</h2>
+                                        <p>회원가입 ~~~~</p>
+                                        <p> <input class="w3-input w3-border" type="text" placeholder="ID"> </p>
+                                        <p class="description"> 아이디는 영문으로 6자~15자까지 가능합니다</p>
+                                        <p> <input class="w3-input w3-border" type="text" placeholder="닉네임"> </p>
+                                        <p class="description"> Color Log에서 사용할 닉네임을 적어주세요</p>
+                                        <p> <input class="w3-input w3-border" type="password" placeholder="Password"></p>
+                                        <p class="description"> 비밀번호는 최소 6자 최대 20자 까지 가능합니다</p>
+                                        <p> <input class="w3-input w3-border" type="password" placeholder="Password REPEAT"></p>
+                                        <p class="description"> 비밀번호를 한 번 더 확인해주세요</p>
+                                  
+                                        <button type="button" class="w3-button w3-block w3-padding-large w3-red w3-margin-bottom" onclick="document.getElementById('sign_up').style.display='none'">SIGN UP</button>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+
+
+
+        
+        
+        <div class="section" style="background: #60c5ba; width: 100vw; height:100vh;">Some Section2 
+            <div class = "slide" > 여기에 설명1 </div>
+
+
+
+            <div class = "slide" > 여기에 설명2 </div>
+            <div class = "slide" > 여기에 설명3</div>
+            <div class = "slide" > 여기에 설명4 </div>
+
+        
+        
+        
+        
+        </div>
+
+        <div class="section" style="background: #feee7d; width: 100vw; height:100vh;">슬라이드3  </div>
+        <div class="section" style="background: #60c5ba; width: 100vw; height:100vh;">슬라이드4  </div>
+
+    </div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+<script>
+
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                //options here
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+                autoScrolling:true,
+                scrollHorizontally: true,
+                navigation:true,
+                navigationPosition:'right',
+                sectionsColor: ['#ef5285','#60c5ba','#feee7d','#60c5ba']
+            });
+
+
+
+
+            $('.trigger').on('click', function() {
+            $('.modal-wrapper').toggleClass('open');
+            $('.page-wrapper').toggleClass('blur-it');
+            return false;
+            });
+
+
+
+            $('.trigger_2').on('click', function() {
+            $('.modal-wrapper_2').toggleClass('open');
+            $('.page-wrapper').toggleClass('blur-it');
+            return false;
+            });
+
+
+            
+
+        });
+        
+        
+
+        </script>

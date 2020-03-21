@@ -1,0 +1,35 @@
+장고 뼈대
+
+coloringmaps 디렉토리 : 프로젝트 관련 디렉토리, 파일을 보관 / 최상위디렉토리
+                      보통 settings.py 파일의 BASE_DIR 항목으로 지정                      
+- db.sqlite3 (아직없음) : SQLite3 db파일 / 테이블 있음
+- manage.py : 장고 명령어를 처리하는 파일
+                      
+                      
+coloringmaps 디렉토리 : 프로젝트명으로 만들어진 디렉토리, 프로젝트 관련 파일 있음.
+- __init__.py : 디렉토리에 이 파일이 있으면 파이썬패키지로 인식
+- settings.py : 설정 파일
+- urls.py : 프로젝트 레벨의 url패턴을 정의하는 최상위 URLconf
+            보통 애플리케이션 디렉토리마다 하위 urls.py 파일이 또 있음.
+- wsgi.py : Apache와 같은 웹 서버와 WSGI 규격으로 연동하기 위한 파일
+
+
+applications 디렉토리 : 애플리케이션명으로 만들어진 애플리케이션 디렉토리
+                        해당 애플리케이션 관련 파일들이 있음.
+- admin.py : Admin 사이트에 모델 클래스를 등록해주는 파일
+- apps.py : 애플리케이션 설정 클래스를 정의하는 파일
+
+migrations 디렉토리 : DB변경사항을 관리하기 위한 디렉토리, DB에 추가,삭제,변경 등이 발생하면 변경 내역을 기록한 파일을 위치
+- models.py : db 모델 클래스를 정의하는 파일
+- views.py : 뷰 함수 정의파일
+
+
+templates 디렉토리 (아직없음) : 프로젝트를 진행하면서 추가, 템플릿 파일이 들어가있음
+위치는
+프로젝트 레벨일때는 : coloringmaps/templates
+애플리케이션 레벨에서는 : coloringmaps/applications/templates
+
+static 디렉토리 (아직없음) : 프로젝트를 진행하면서 추가 css, image, js파일들 모음
+위치는
+프로젝트 레벨일때는 : coloringmaps/static
+애플리케이션 레벨에서는 : coloringmaps/applications/static
