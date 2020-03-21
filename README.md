@@ -1,2 +1,3 @@
-# Colorlog\nTravel diary by coloring map with Django
 # Colorlog
+
+Travel diary by coloring map with Django
