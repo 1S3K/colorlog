@@ -29,26 +29,3 @@ urlpatterns = [
 	path('test/', views.test, name='test'),
 	
 ]
-
-
-"""
-#원래 했던 거
-from django.conf import settings
-from django.conf.urls import url, include
-from django.conf.urls.static import static
-from django.urls import path
-from . import views
-
-urlpatterns = [
-    # /maps/
-    path('', views.Index, name='index'),
-    
-    # /maps/main
-    path('main/', views.Main, name='main'),
-    
-]
-"""
-
-
-
-

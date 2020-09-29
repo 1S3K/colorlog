@@ -477,36 +477,6 @@ def deletestory(request, story_id):
 	if region.count == 0:
 		region.delete()
 	return redirect('/')
-"""
-#원래 했던 거
-#장고걸스
-from django.shortcuts import render
-
-def Index(request):
-	return render(request, 'maps/new_cover.html', {})
-
-def Main(request):
-	return render(request, 'maps/main.html', {})
-"""
-
-
-"""
-공부자료
-#장고 파이썬 프로그래밍 Book
-from django.views.generic.base import TemplateView
-from django.views.generic import ListView
-from django.views.generic import DetailView
-from maps.models import Member, Story
-
-#-- TemplateView
-class Index(TemplateView):
-	template_name = 'maps/cover.html'
-    
-    
-class Main(TemplateView):
-	template_name = 'maps/main.html'
-
-"""
 
 """
 템플릿뷰 : 특별한 로직 없이 템플릿 파일만을 렌더링
